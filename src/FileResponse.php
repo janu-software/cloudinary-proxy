@@ -38,7 +38,7 @@ final class FileResponse
 		string $file,
 		string $name = null,
 		string $contentType = null,
-		private bool $forceDownload = true
+		private bool $forceDownload = true,
 	) {
 		if (!is_file($file) || !is_readable($file)) {
 			throw new Exception("File '$file' doesn't exist or is not readable.");
@@ -89,7 +89,7 @@ final class FileResponse
 			'Content-Disposition',
 			($this->forceDownload ? 'attachment' : 'inline')
 				. '; filename="' . $this->name . '"'
-				. '; filename*=utf-8\'\'' . rawurlencode($this->name)
+				. '; filename*=utf-8\'\'' . rawurlencode($this->name),
 		);
 
 		$filesize = $length = filesize($this->file);
