@@ -23,7 +23,7 @@
 	],
 	"require-dev": {
 		"stanislav-janu/phpstan": "^1",
-		"rector/rector": "^0.12"
+		"rector/rector": "^0.14"
 	},
 	"minimum-stability": "stable",
 	"config": {
@@ -36,8 +36,8 @@
 		"sa": "vendor/bin/phpstan.phar analyse --memory-limit=512M",
 		"sap": "vendor/bin/phpstan.phar analyse --memory-limit=512M --pro",
 		"sacc": "vendor/bin/phpstan.phar clear-result-cache",
-		"r": "vendor/bin/rector process --config rector.php --dry-run",
-		"r-f": "vendor/bin/rector process --config rector.php",
+		"re": "vendor/bin/rector process --config rector.php --dry-run",
+		"re-f": "vendor/bin/rector process --config rector.php",
 		"cs-i": "rm -rf temp/nette-coding-standard && composer create-project nette/coding-standard temp/nette-coding-standard",
 		"cs": "php -d memory_limit=512M temp/nette-coding-standard/ecs check src www --preset php80",
 		"cs-f": "php -d memory_limit=512M temp/nette-coding-standard/ecs check src www --preset php80 --fix"
