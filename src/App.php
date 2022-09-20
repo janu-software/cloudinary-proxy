@@ -47,6 +47,7 @@ class App
 		$headers = $this->request->getHeaders();
 		$url = $this->request->getUrl();
 		$urlHash = md5($url->getAbsoluteUrl());
+		$subFolder = Strings::substring($urlHash, 0, 2);
 		$cloudinaryUrl = $url->withHost('res.cloudinary.com');
 
 		if (str_contains($url->getPath(), 'e_vectorize')) {
@@ -62,7 +63,13 @@ class App
 
 		$extension = Strings::lower($extension);
 
-		$cacheFile = self::CACHE . '/' . $urlHash . '.' . $extension;
+		$oldCacheFile = self::CACHE . '/' . $urlHash . '.' . $extension;
+		$cacheFile = self::CACHE . '/' . $subFolder . '/' . $urlHash . '.' . $extension;
+
+		if (!file_exists($this->rootDir . $cacheFile) && file_exists($this->rootDir . $oldCacheFile)) {
+			FileSystem::copy($this->rootDir . $oldCacheFile, $this->rootDir . $cacheFile);
+			FileSystem::delete($this->rootDir . $oldCacheFile);
+		}
 
 		if (!file_exists($this->rootDir . $cacheFile)) {
 			$client = new Client([
