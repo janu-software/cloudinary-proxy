@@ -3,7 +3,7 @@
 	"description": "Cloudinary proxy cache for images.",
 	"type": "project",
 	"require": {
-		"php": ">=8.0.0",
+		"php": ">=8.1.0",
 		"nette/http": "^3.1",
 		"tracy/tracy": "^2.8",
 		"guzzlehttp/guzzle": "^7.4",
@@ -28,7 +28,7 @@
 	"minimum-stability": "stable",
 	"config": {
 		"platform": {
-			"php": "8.0"
+			"php": "8.1"
 		},
 		"process-timeout": 0
 	},
@@ -39,7 +39,7 @@
 		"re": "vendor/bin/rector process --config rector.php --dry-run",
 		"re-f": "vendor/bin/rector process --config rector.php",
 		"cs-i": "rm -rf temp/nette-coding-standard && composer create-project nette/coding-standard temp/nette-coding-standard",
-		"cs": "php -d memory_limit=512M temp/nette-coding-standard/ecs check src www --preset php80",
-		"cs-f": "php -d memory_limit=512M temp/nette-coding-standard/ecs check src www --preset php80 --fix"
+		"cs": "php -d memory_limit=512M temp/nette-coding-standard/ecs check src www --preset php81",
+		"cs-f": "php -d memory_limit=512M temp/nette-coding-standard/ecs check src www --preset php81 --fix"
 	}
 }
