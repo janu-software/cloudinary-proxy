@@ -3,11 +3,11 @@
 	"description": "Cloudinary proxy cache for images.",
 	"type": "project",
 	"require": {
-		"php": ">=8.1.0",
-		"nette/http": "^3.1",
-		"tracy/tracy": "^2.8",
-		"guzzlehttp/guzzle": "^7.4",
-		"thecodingmachine/safe": "^2.1"
+		"php": ">=8.2.0",
+		"nette/http": "^3.2",
+		"tracy/tracy": "^2.10",
+		"guzzlehttp/guzzle": "^7.7",
+		"thecodingmachine/safe": "^2.5"
 	},
 	"license": "MIT",
 	"autoload": {
@@ -23,12 +23,12 @@
 	],
 	"require-dev": {
 		"stanislav-janu/phpstan": "^1",
-		"rector/rector": "^0.14"
+		"rector/rector": "^0.17"
 	},
 	"minimum-stability": "stable",
 	"config": {
 		"platform": {
-			"php": "8.1"
+			"php": "8.2"
 		},
 		"process-timeout": 0
 	},

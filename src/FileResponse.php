@@ -31,7 +31,7 @@ final class FileResponse
 
 	private readonly string $contentType;
 
-	private string $name;
+	private readonly string $name;
 
 
 	public function __construct(
