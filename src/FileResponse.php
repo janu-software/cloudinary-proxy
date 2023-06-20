@@ -27,9 +27,9 @@ final class FileResponse
 
 	public bool $resuming = true;
 
-	private string $file;
+	private readonly string $file;
 
-	private string $contentType;
+	private readonly string $contentType;
 
 	private string $name;
 
@@ -38,7 +38,7 @@ final class FileResponse
 		string $file,
 		string $name = null,
 		string $contentType = null,
-		private bool $forceDownload = true,
+		private readonly bool $forceDownload = true,
 	) {
 		if (!is_file($file) || !is_readable($file)) {
 			throw new Exception("File '$file' doesn't exist or is not readable.");

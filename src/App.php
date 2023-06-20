@@ -24,7 +24,7 @@ use function Safe\mime_content_type;
 
 class App
 {
-	public const CACHE = '/temp/cache';
+	final public const CACHE = '/temp/cache';
 	public Request $request;
 
 
@@ -52,7 +52,7 @@ class App
 
 		if (str_contains($url->getPath(), 'e_vectorize')) {
 			$extension = 'svg';
-		} elseif (isset($headers['accept']) && str_contains($headers['accept'], 'image/webp')) {
+		} elseif (isset($headers['accept']) && str_contains((string) $headers['accept'], 'image/webp')) {
 			$extension = 'webp';
 		} else {
 			$extension = pathinfo($url->getPath(), PATHINFO_EXTENSION);
