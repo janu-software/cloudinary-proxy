@@ -11,6 +11,7 @@ namespace JanuSoftware\MediaServe;
 
 use Exception;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\GuzzleException;
 use Nette\Http\Request;
 use Nette\Http\RequestFactory;
@@ -52,6 +53,8 @@ class App
 
 		if (str_contains($url->getPath(), 'e_vectorize')) {
 			$extension = 'svg';
+		} elseif (isset($headers['accept']) && str_contains((string) $headers['accept'], 'image/avif')) {
+			$extension = 'avif';
 		} elseif (isset($headers['accept']) && str_contains((string) $headers['accept'], 'image/webp')) {
 			$extension = 'webp';
 		} else {
@@ -75,8 +78,16 @@ class App
 			$client = new Client([
 				'headers' => $headers,
 			]);
-			$response = $client->get($cloudinaryUrl->getAbsoluteUrl());
-			FileSystem::write($this->rootDir . $cacheFile, $response->getBody()->getContents());
+			try {
+				$absoluteUrl = $cloudinaryUrl->getAbsoluteUrl();
+				if(!str_contains($absoluteUrl, '.jpg')) {
+					$absoluteUrl .= '.jpg';
+				}
+				$response = $client->get(urldecode($absoluteUrl));
+				FileSystem::write($this->rootDir . $cacheFile, $response->getBody()->getContents());
+			} catch (ClientException $e) {
+				echo $e->getMessage();
+			}
 		}
 
 		$fileResponse = new FileResponse($this->rootDir . $cacheFile, $url->getPath(), mime_content_type($this->rootDir . $cacheFile), false);
